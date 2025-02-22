@@ -2,6 +2,12 @@ const btnRock = document.querySelector("#rock");
 const btnPaper = document.querySelector("#paper");
 const btnScissors = document.querySelector("#scissors");
 
+const humanScr = document.querySelector("#humanScore");
+const computerScr = document.querySelector('#computerScore');
+
+const container = document.querySelector(".container");
+
+
 let humanScore = 0;
 let computerScore = 0;
 
@@ -15,7 +21,7 @@ function getComputerChoice(){
 
 
 function playGame(humanSelection){
-
+  
   function playRound(humanChoice, computerChoice){
     if(humanChoice === "rock" && computerChoice === "scissors"){
       humanScore += 1;
@@ -28,22 +34,37 @@ function playGame(humanSelection){
     }else {
       computerScore += 1;
     }
+
+    console.log(computerScore);
+    humanScr.textContent = `Your score: ${humanScore}`;
+    computerScr.textContent = `Computer Score: ${computerScore}`;
   }
   
   const computerSelection = getComputerChoice();
 
-  if(humanSelection === 'rock' || humanSelection === 'paper' || humanSelection === 'scissors'){
-    playRound(humanSelection, computerSelection);
-    console.log("Human Score: " + humanScore);
-    console.log("Computer Score: " + computerScore);
-  } else {
-    console.log("Valio verga")
+  
+  console.log(computerScr.textContent);
+
+
+  playRound(humanSelection, computerSelection);
+
+  if(humanScore === 5){
+    let winningSign = document.createElement("div");
+    winningSign.textContent = "You're the winner";
+    winningSign.classList.add('winningSign');
+    container.appendChild(winningSign);
   }
 
-  console.log(computerSelection);
-  console.log(humanSelection);
+  if(computerScore === 5){
+    let winningSign = document.createElement("div");
+    winningSign.textContent = "Computer is the winner";
+    winningSign.classList.add('winningSign');
+    container.appendChild(winningSign);
+  }
   
+
 }
+
 
 btnRock.addEventListener("click", e => {
   let target = e.target;
@@ -62,3 +83,4 @@ btnScissors.addEventListener("click", e => {
 
   playGame(target.id);
 })
+

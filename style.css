@@ -27,3 +27,21 @@ h3{
   text-align: center;
 }
 
+.score{
+  width: 200px;
+  height: auto;
+  background-color: antiquewhite;
+  display: flex;
+  align-items: start;
+  justify-content: center;
+  flex-direction: column;
+}
+
+#humanScore, #computerScore {
+  font-size: 25px;
+}
+
+.winningSign{
+  font-size: 70px;
+  width: auto;
+}
