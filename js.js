@@ -1,3 +1,7 @@
+const btnRock = document.querySelector("#rock");
+const btnPaper = document.querySelector("#paper");
+const btnScissors = document.querySelector("#scissors");
+
 let humanScore = 0;
 let computerScore = 0;
 
@@ -9,12 +13,8 @@ function getComputerChoice(){
   if(randomChoice >= 6) return "scissors";
 }
 
-function getHumanChoice(){
-  let humanChoice = prompt('Choose between rock, paper and scissors').toLowerCase();
-  return humanChoice;
-}
 
-function playGame(){
+function playGame(humanSelection){
 
   function playRound(humanChoice, computerChoice){
     if(humanChoice === "rock" && computerChoice === "scissors"){
@@ -29,15 +29,36 @@ function playGame(){
       computerScore += 1;
     }
   }
-
-  const humanSelection = getHumanChoice();
+  
   const computerSelection = getComputerChoice();
 
-  playRound(humanSelection, computerSelection);
+  if(humanSelection === 'rock' || humanSelection === 'paper' || humanSelection === 'scissors'){
+    playRound(humanSelection, computerSelection);
+    console.log("Human Score: " + humanScore);
+    console.log("Computer Score: " + computerScore);
+  } else {
+    console.log("Valio verga")
+  }
 
   console.log(computerSelection);
-  console.log("Human Score: " + humanScore);
-  console.log("Computer Score: " + computerScore);
+  console.log(humanSelection);
+  
 }
 
+btnRock.addEventListener("click", e => {
+  let target = e.target;
 
+  playGame(target.id);
+})
+
+btnPaper.addEventListener("click", e => {
+  let target = e.target;
+
+  playGame(target.id);
+})
+
+btnScissors.addEventListener("click", e => {
+  let target = e.target;
+
+  playGame(target.id);
+})
